@@ -257,6 +257,8 @@ export default {
         "red-piece"
       ];
 
+      this.totalPieces = 24;
+
       this.reset = "hidden";
       this.button = "";
     },
@@ -292,6 +294,24 @@ export default {
               this.reset = "";
               return;
             }
+            let currentTotal =
+              response.data.pawns[0] +
+              response.data.kings[0] +
+              response.data.pawns[1] +
+              response.data.kings[1];
+            if (currentTotal == this.totalPieces) {
+              this.nochange = this.nochange + 1;
+            } else {
+              this.nochange = 0;
+            }
+            this.totalPieces = currentTotal;
+
+            if (this.nochange >= 30) {
+              this.nochange = 0;
+              this.reset = "";
+              return;
+            }
+
             this.go();
           })
           .catch(error => console.log("Error", error.message));
@@ -324,6 +344,24 @@ export default {
               return;
             }
 
+            let currentTotal =
+              response.data.pawns[0] +
+              response.data.kings[0] +
+              response.data.pawns[1] +
+              response.data.kings[1];
+            if (currentTotal == this.totalPieces) {
+              this.nochange = this.nochange + 1;
+            } else {
+              this.nochange = 0;
+            }
+            this.totalPieces = currentTotal;
+
+            if (this.nochange >= 30) {
+              this.nochange = 0;
+              this.reset = "";
+              return;
+            }
+
             this.go();
           })
           .catch(error => console.log("Error", error.message));
@@ -333,6 +371,8 @@ export default {
   data() {
     return {
       finished: false,
+      nochange: 0,
+      totalPieces: 24,
       button: "",
       reset: "hidden",
       turn: "r",
