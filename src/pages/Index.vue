@@ -277,7 +277,11 @@ export default {
               if (this.stateArray[i] == 0) Vue.set(this.pieces, i, "empty");
               else if (this.stateArray[i] == 1)
                 Vue.set(this.pieces, i, "black-piece");
-              else Vue.set(this.pieces, i, "red-piece");
+              else if (this.stateArray[i] == 2)
+                Vue.set(this.pieces, i, "red-piece");
+              else if (this.stateArray[i] == 3)
+                Vue.set(this.pieces, i, "king black-piece");
+              else Vue.set(this.pieces, i, "king red-piece");
             }
             this.turn = "b";
             if (response.data.pawns[0] == 0 && response.data.kings[0] == 0) {
@@ -304,7 +308,11 @@ export default {
               if (this.stateArray[i] == 0) Vue.set(this.pieces, i, "empty");
               else if (this.stateArray[i] == 1)
                 Vue.set(this.pieces, i, "black-piece");
-              else Vue.set(this.pieces, i, "red-piece");
+              else if (this.stateArray[i] == 2)
+                Vue.set(this.pieces, i, "red-piece");
+              else if (this.stateArray[i] == 3)
+                Vue.set(this.pieces, i, "king black-piece");
+              else Vue.set(this.pieces, i, "king red-piece");
             }
             this.turn = "r";
             if (response.data.pawns[0] == 0 && response.data.kings[0] == 0) {
