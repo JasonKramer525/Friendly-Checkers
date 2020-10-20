@@ -40,7 +40,7 @@
         </q-btn-dropdown>
       </div>
       <div class="row justify-center" style="transform:translateY(-90px)">
-        <q-btn color="secondary" label="Go!" @click="go" />
+        <q-btn :class="button" color="secondary" label="Go!" @click="go" />
       </div>
       <div
         class="row justify-center vertical-middle text-center"
@@ -106,6 +106,8 @@
 </template>
 
 <script>
+import Vue from "vue";
+
 const axios = require("axios");
 
 export default {
@@ -118,20 +120,136 @@ export default {
       console.log(agent);
       this.black = agent;
     },
+    switchColors() {
+      this.update = Math.floor(Math.random() * 10);
+    },
     go() {
-      console.log("go!");
-      axios("https://mlbhighlightapi.herokuapp.com/?date=08082020")
-        .then(response => {
-          console.log(response.data);
-        })
-        .catch(error => console.log("Error", error.message));
+      if (this.red == "Red Agent" || this.black == "Black Agent") return;
+      this.button = "hidden"
+      if (this.turn == "r") {
+        axios(
+          "https://friendlycheckers.herokuapp.com/?state=[" +
+            this.stateArray +
+            "]&turn=r&strat=" +
+            this.red
+        )
+          .then(response => {
+            this.stateArray = response.data.state;
+            for (let i = 0; i < this.stateArray.length; i++) {
+              if (this.stateArray[i] == 0) Vue.set(this.pieces, i, "empty");
+              else if (this.stateArray[i] == 1)
+                Vue.set(this.pieces, i, "black-piece");
+              else Vue.set(this.pieces, i, "red-piece");
+            }
+            this.turn = "b";
+            if (response.data.pawns[0] == 0 && response.data.kings[0] == 0)
+              return;
+            if (response.data.pawns[1] == 0 && response.data.kings[1] == 0)
+              return;
+            this.go();
+          })
+          .catch(error => console.log("Error", error.message));
+      } else {
+        axios(
+          "https://friendlycheckers.herokuapp.com/?state=[" +
+            this.stateArray +
+            "]&turn=b&strat=" +
+            this.black
+        )
+          .then(response => {
+            this.stateArray = response.data.state;
+            for (let i = 0; i < this.stateArray.length; i++) {
+              if (this.stateArray[i] == 0) Vue.set(this.pieces, i, "empty");
+              else if (this.stateArray[i] == 1)
+                Vue.set(this.pieces, i, "black-piece");
+              else Vue.set(this.pieces, i, "red-piece");
+            }
+            this.turn = "r";
+            if (response.data.pawns[0] == 0 && response.data.kings[0] == 0)
+              return;
+            if (response.data.pawns[1] == 0 && response.data.kings[1] == 0)
+              return;
+
+            this.go();
+          })
+          .catch(error => console.log("Error", error.message));
+      }
     }
   },
   data() {
     return {
+      finished: false,
+      button: "",
+      turn: "r",
       red: "Red Agent",
       black: "Black Agent",
       row1: [0, 0, 0, 0, 0, 0, 0, 0],
+      stateArray: [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0
+      ],
       pieces: [
         "blank",
         "black-piece",
