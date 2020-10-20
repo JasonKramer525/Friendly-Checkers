@@ -106,6 +106,8 @@
 </template>
 
 <script>
+const axios = require("axios");
+
 export default {
   methods: {
     setRed(agent) {
@@ -118,6 +120,11 @@ export default {
     },
     go() {
       console.log("go!");
+      axios("https://mlbhighlightapi.herokuapp.com/?date=08082020")
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(error => console.log("Error", error.message));
     }
   },
   data() {
