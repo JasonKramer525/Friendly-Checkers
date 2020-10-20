@@ -39,6 +39,9 @@
           </q-list>
         </q-btn-dropdown>
       </div>
+      <div class="row justify-center" style="transform:translateY(-90px)">
+        <q-btn color="secondary" label="Go!" @click="go" />
+      </div>
       <div
         class="row justify-center vertical-middle text-center"
         style="transform:translateY(-80px)"
@@ -97,9 +100,6 @@
             </tr>
           </table>
         </main>
-      </div>
-      <div class="row justify-center" style="transform:translateY(-60px)">
-        <q-btn color="secondary" label="Go!" @click="go" />
       </div>
     </q-page-container>
   </q-page>
