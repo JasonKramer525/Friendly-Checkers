@@ -1,8 +1,8 @@
 {
   "name": "friendlycheckers",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar App",
+  "description": "Friendly Checkers",
+  "productName": "Friendly Checkers",
   "author": "Jason Kramer <jasonkramer525@gmail.com>",
   "private": true,
   "scripts": {
