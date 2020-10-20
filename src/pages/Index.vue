@@ -314,7 +314,7 @@ export default {
 
             this.go();
           })
-          .catch(error => console.log("Error", error.message));
+          .catch(error => (this.reset = ""));
       } else {
         axios(
           "https://friendlycheckers.herokuapp.com/?state=[" +
@@ -364,7 +364,7 @@ export default {
 
             this.go();
           })
-          .catch(error => console.log("Error", error.message));
+          .catch(error => (this.reset = ""));
       }
     }
   },
