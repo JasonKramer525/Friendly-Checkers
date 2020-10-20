@@ -42,6 +42,9 @@
       <div class="row justify-center" style="transform:translateY(-90px)">
         <q-btn :class="button" color="secondary" label="Go!" @click="go" />
       </div>
+      <div class="row justify-center" style="transform:translateY(-90px)">
+        <q-btn :class="reset" color="negative" label="Reset!" @click="resetGame" />
+      </div>
       <div
         class="row justify-center vertical-middle text-center"
         style="transform:translateY(-80px)"
@@ -120,12 +123,147 @@ export default {
       console.log(agent);
       this.black = agent;
     },
-    switchColors() {
-      this.update = Math.floor(Math.random() * 10);
+    resetGame() {
+      this.turn = "r";
+      this.stateArray = [
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0,
+        2,
+        0
+      ];
+      this.pieces = [
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "black-piece",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece",
+        "blank",
+        "red-piece"
+      ];
+
+      this.reset = "hidden";
+      this.button = "";
     },
     go() {
+      Vue.set(this.pieces, 0, "empty");
       if (this.red == "Red Agent" || this.black == "Black Agent") return;
-      this.button = "hidden"
+      this.button = "hidden";
       if (this.turn == "r") {
         axios(
           "https://friendlycheckers.herokuapp.com/?state=[" +
@@ -142,10 +280,14 @@ export default {
               else Vue.set(this.pieces, i, "red-piece");
             }
             this.turn = "b";
-            if (response.data.pawns[0] == 0 && response.data.kings[0] == 0)
+            if (response.data.pawns[0] == 0 && response.data.kings[0] == 0) {
+              this.reset = "";
               return;
-            if (response.data.pawns[1] == 0 && response.data.kings[1] == 0)
+            }
+            if (response.data.pawns[1] == 0 && response.data.kings[1] == 0) {
+              this.reset = "";
               return;
+            }
             this.go();
           })
           .catch(error => console.log("Error", error.message));
@@ -165,10 +307,14 @@ export default {
               else Vue.set(this.pieces, i, "red-piece");
             }
             this.turn = "r";
-            if (response.data.pawns[0] == 0 && response.data.kings[0] == 0)
+            if (response.data.pawns[0] == 0 && response.data.kings[0] == 0) {
+              this.reset = "";
               return;
-            if (response.data.pawns[1] == 0 && response.data.kings[1] == 0)
+            }
+            if (response.data.pawns[1] == 0 && response.data.kings[1] == 0) {
+              this.reset = "";
               return;
+            }
 
             this.go();
           })
@@ -180,6 +326,7 @@ export default {
     return {
       finished: false,
       button: "",
+      reset: "hidden",
       turn: "r",
       red: "Red Agent",
       black: "Black Agent",
