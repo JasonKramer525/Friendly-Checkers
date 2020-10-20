@@ -240,6 +240,7 @@ td {
   background-color: black;
   border: 1px solid white;
   border-radius: 50px;
+  transform: translateY(8px);
 }
 
 .red-piece {
@@ -249,6 +250,7 @@ td {
   background-color: red;
   border: 1px solid white;
   border-radius: 50px;
+  transform: translateY(8px);
 }
 
 .king.red-piece {
