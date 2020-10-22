@@ -21,6 +21,11 @@
                 <q-item-label>BasicAI</q-item-label>
               </q-item-section>
             </q-item>
+            <q-item clickable v-close-popup @click="setRed('KingDistAI')">
+              <q-item-section>
+                <q-item-label>KingDistAI</q-item-label>
+              </q-item-section>
+            </q-item>
           </q-list>
         </q-btn-dropdown>
 
@@ -34,6 +39,11 @@
             <q-item clickable v-close-popup @click="setBlack('BasicAI')">
               <q-item-section>
                 <q-item-label>BasicAI</q-item-label>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="setBlack('KingDistAI')">
+              <q-item-section>
+                <q-item-label>KingDistAI</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
