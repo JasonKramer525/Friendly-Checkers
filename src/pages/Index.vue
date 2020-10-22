@@ -26,6 +26,11 @@
                 <q-item-label>KingDistAI</q-item-label>
               </q-item-section>
             </q-item>
+            <q-item clickable v-close-popup @click="setRed('GoldenRatioAI')">
+              <q-item-section>
+                <q-item-label>GoldenRatioAI</q-item-label>
+              </q-item-section>
+            </q-item>
           </q-list>
         </q-btn-dropdown>
 
@@ -44,6 +49,11 @@
             <q-item clickable v-close-popup @click="setBlack('KingDistAI')">
               <q-item-section>
                 <q-item-label>KingDistAI</q-item-label>
+              </q-item-section>
+            </q-item>
+            <q-item clickable v-close-popup @click="setBlack('GoldenRatioAI')">
+              <q-item-section>
+                <q-item-label>GoldenRatioAI</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
