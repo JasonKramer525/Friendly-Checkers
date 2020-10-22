@@ -326,7 +326,7 @@ export default {
             }
             this.totalPieces = currentTotal;
 
-            if (this.nochange >= 50) {
+            if (this.nochange >= 30) {
               this.nochange = 0;
               this.reset = "";
               return;
@@ -376,7 +376,7 @@ export default {
             }
             this.totalPieces = currentTotal;
 
-            if (this.nochange >= 50) {
+            if (this.nochange >= 30) {
               this.nochange = 0;
               this.reset = "";
               return;
