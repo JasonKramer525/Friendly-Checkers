@@ -16,9 +16,9 @@
                 <q-item-label>Tonto</q-item-label>
               </q-item-section>
             </q-item>
-            <q-item clickable v-close-popup @click="setRed('KramerAI')">
+            <q-item clickable v-close-popup @click="setRed('BasicAI')">
               <q-item-section>
-                <q-item-label>KramerAI</q-item-label>
+                <q-item-label>BasicAI</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -31,9 +31,9 @@
                 <q-item-label>Tonto</q-item-label>
               </q-item-section>
             </q-item>
-            <q-item clickable v-close-popup @click="setBlack('KramerAI')">
+            <q-item clickable v-close-popup @click="setBlack('BasicAI')">
               <q-item-section>
-                <q-item-label>KramerAI</q-item-label>
+                <q-item-label>BasicAI</q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
